@@ -1,0 +1,55 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            set -e
+
+            cd /root/storebuilders-app
+
+            echo "── Pulling latest changes ──"
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "── Preserving .env if present ──"
+            # .env is gitignored — git reset will never touch it
+
+            echo "── Installing dependencies ──"
+            npm ci --prefer-offline
+
+            echo "── Building Next.js ──"
+            npm run build
+
+            echo "── Restarting PM2 ──"
+            pm2 restart storebuilders-app --update-env
+
+            echo "── Health check ──"
+            sleep 3
+            pm2 show storebuilders-app | grep -E "status|restarts"
+
+            echo "✓ Deployment complete"

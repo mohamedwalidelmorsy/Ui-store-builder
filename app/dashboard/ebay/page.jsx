@@ -117,7 +117,7 @@ const StatCard = ({ stat, index }) => {
         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#38C695]/20 flex items-center justify-center">
           <Icon className="h-8 w-8 text-[#38C695]" />
         </div>
-        <h3 className="text-4xl font-bold text-gray-900 mb-2">{stat.value}</h3>
+        <h3 className="text-2xl md:text-4xl font-bold text-gray-900 mb-2">{stat.value}</h3>
         <p className="text-lg font-semibold text-[#38C695] mb-1">{stat.label}</p>
         <p className="text-sm text-gray-500">{stat.description}</p>
       </CardContent>
@@ -192,7 +192,7 @@ function EbayComingSoonPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="-m-4 md:-m-8 bg-white overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden bg-gradient-to-br from-[#1D3A63] to-[#2a4d7a]">
         {/* Background decoration */}

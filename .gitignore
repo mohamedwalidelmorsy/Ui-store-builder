@@ -37,12 +37,11 @@ Desktop.ini
 *.sln
 *.sw?
 
-# ── IDEs ──────────────────────────────────────────────────────
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+# ── IDEs & Tooling ────────────────────────────────────────────
+.vscode/
 .idea/
 *.iml
+.claude/
 
 # ── Testing ───────────────────────────────────────────────────
 coverage/

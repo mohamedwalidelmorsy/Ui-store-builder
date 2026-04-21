@@ -1,6 +1,6 @@
 <div align="center">
 
-# StoreBuilders.io
+# StoreBuilders.io <!-- ci-verify -->
 
 **Launch a fully configured, AI-powered Shopify dropshipping store in minutes — not months.**
 

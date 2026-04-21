@@ -1,116 +1,200 @@
-# StoreBuilders App
+<div align="center">
 
-E-commerce store builder SaaS — built with **Next.js 15 App Router**, Tailwind CSS v4, and React 19.
+# StoreBuilders.io
+
+**Launch a fully configured, AI-powered Shopify dropshipping store in minutes — not months.**
+
+[![Next.js](https://img.shields.io/badge/Next.js-15.3-black?logo=next.js)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.2-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+[Live Demo](https://bayu.tsscout.ai) · [Report Bug](https://github.com/mohamedwalidelmorsy/Ui-store-builder/issues) · [Request Feature](https://github.com/mohamedwalidelmorsy/Ui-store-builder/issues)
+
+</div>
+
+---
+
+## Overview
+
+StoreBuilders.io is an AI-driven SaaS platform that automates the end-to-end creation of professional Shopify dropshipping stores. Users provide a niche and Shopify credentials; the platform handles theme customization, AI-generated branding, curated product import from vetted suppliers, SEO-ready copy, and full payment/shipping configuration — all without a single line of code from the merchant.
+
+---
+
+## Architecture
+
+```
+storebuilders-app/
+├── app/                         # Next.js App Router
+│   ├── (marketing)/             # Route group — public marketing pages
+│   │   ├── page.jsx             # Landing page
+│   │   ├── about/
+│   │   ├── blog/
+│   │   ├── contact/
+│   │   ├── pricing/
+│   │   ├── privacy/
+│   │   ├── sources/
+│   │   └── terms/
+│   ├── auth/                    # Authentication flow
+│   ├── dashboard/               # Protected dashboard
+│   │   ├── page.jsx             # Dashboard home
+│   │   ├── store-builder/       # Multi-step store creation wizard
+│   │   └── ebay/                # eBay product integration
+│   ├── globals.css
+│   └── layout.jsx               # Root layout with metadata
+├── components/
+│   ├── dashboard/               # Dashboard-specific components
+│   ├── layout/                  # Navbar, Footer
+│   ├── marketing/               # Landing page sections
+│   └── ui/                      # Headless UI primitives (Radix-based)
+├── public/                      # Static assets
+├── next.config.mjs
+├── postcss.config.mjs
+└── jsconfig.json
+```
+
+**Core Stack**
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router, RSC) |
+| UI Runtime | React 19 |
+| Styling | Tailwind CSS 4 + PostCSS |
+| Component Primitives | Radix UI (Checkbox, Tabs, Slot) |
+| Icon System | Lucide React |
+| Class Utilities | clsx · tailwind-merge · class-variance-authority |
+| Deployment | PM2 + Nginx reverse proxy (Ubuntu 24.04) |
+
+---
+
+## Key Features
+
+- **AI-Powered Store Generation** — Niche-aware theme selection, brand name generation, color palette and logo creation, all automated.
+- **Multi-Step Guided Wizard** — 4-step onboarding flow: store info → platform selection → Shopify account connection → review & launch.
+- **Curated Product Sourcing** — Integration with TS Scout partner network, AliExpress, and Amazon for high-margin, vetted products.
+- **SEO-Ready Content Pipeline** — AI-generated product titles, descriptions, and meta tags optimized for organic search visibility.
+- **Multi-Platform Roadmap** — Shopify fully supported; WooCommerce and eBay integrations in active development.
+- **Marketing Site** — Full public-facing site with landing page, pricing, blog, legal pages, and contact form.
+- **Dashboard & Analytics** — Centralized dashboard with eBay product data panel.
+- **Security-First Design** — SSL/TLS throughout, 256-bit credential encryption, PCI-compliant data handling.
 
 ---
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js ≥ 20.x
+- npm ≥ 10.x (or pnpm / yarn)
+
+### Installation
+
 ```bash
-cd storebuilders-app
+# Clone the repository
+git clone git@github.com:mohamedwalidelmorsy/Ui-store-builder.git
+cd Ui-store-builder
+
+# Install dependencies
 npm install
-npm run dev       # http://localhost:3000
-npm run build     # production build
-npm start         # production server
+
+# Copy environment template
+cp .env.example .env.local
+# → Edit .env.local with your credentials (see API Configuration below)
+
+# Start development server
+npm run dev
+```
+
+The app will be available at `http://localhost:3000`.
+
+### Production Build
+
+```bash
+npm run build
+npm run start
+# or via PM2:
+pm2 start npm --name "storebuilders-app" -- run start
+pm2 save
 ```
 
 ---
 
-## Project Structure
+## API Configuration
 
+Create a `.env.local` file in the project root. Use `.env.example` as the template:
+
+```env
+# ── Application ───────────────────────────────────────────────
+NEXT_PUBLIC_APP_URL=https://yourdomain.com
+NEXT_PUBLIC_APP_NAME=StoreBuilders
+
+# ── Shopify Partner API ────────────────────────────────────────
+SHOPIFY_API_KEY=your_shopify_api_key
+SHOPIFY_API_SECRET=your_shopify_api_secret
+SHOPIFY_SCOPES=write_products,write_themes,write_shipping
+
+# ── AI / LLM Provider ─────────────────────────────────────────
+OPENAI_API_KEY=sk-...
+
+# ── Database ──────────────────────────────────────────────────
+DATABASE_URL=postgresql://user:password@localhost:5432/storebuilders
+
+# ── Authentication ────────────────────────────────────────────
+NEXTAUTH_SECRET=generate_with_openssl_rand_base64_32
+NEXTAUTH_URL=https://yourdomain.com
+
+# ── TS Scout Partner API ──────────────────────────────────────
+TS_SCOUT_API_KEY=your_ts_scout_key
+TS_SCOUT_API_URL=https://api.tsscout.ai
 ```
-storebuilders-app/
-├── app/
-│   ├── layout.jsx                        # Root layout — html, body, global CSS only
-│   ├── globals.css                       # Tailwind v4 import
-│   │
-│   ├── (marketing)/                      # Route group — public SEO pages
-│   │   ├── layout.jsx                    # Adds Navbar + Footer
-│   │   ├── page.jsx                      # / — Homepage
-│   │   ├── about/page.jsx                # /about
-│   │   ├── pricing/page.jsx              # /pricing
-│   │   ├── contact/page.jsx              # /contact
-│   │   └── blog/page.jsx                 # /blog
-│   │
-│   ├── auth/page.jsx                     # /auth — standalone login/signup
-│   │
-│   └── dashboard/
-│       ├── layout.jsx                    # Dashboard shell (server component)
-│       ├── page.jsx                      # /dashboard — stores monitor
-│       ├── store-builder/page.jsx        # /dashboard/store-builder
-│       └── ebay/page.jsx                 # /dashboard/ebay
-│
-├── components/
-│   ├── layout/
-│   │   ├── Navbar.jsx                    # Client — active link via usePathname
-│   │   └── Footer.jsx                    # Server component
-│   ├── marketing/
-│   │   ├── AuthContent.jsx               # Client — login/signup form logic
-│   │   ├── BlogContent.jsx               # Client — blog with search/filter state
-│   │   └── ContactForm.jsx               # Client — contact form with state
-│   ├── dashboard/
-│   │   └── DashboardSidebar.jsx          # Client — active nav via usePathname
-│   └── ui/
-│       └── index.jsx                     # Headless UI library (Button, Card, Input…)
-│
-├── public/                               # Static assets
-├── next.config.mjs
-├── postcss.config.mjs                    # Tailwind v4 PostCSS adapter
-└── jsconfig.json                         # Path alias: @/ → ./
+
+> **Security:** Never commit `.env.local`. It is excluded by `.gitignore`.
+
+---
+
+## Deployment
+
+### Nginx Reverse Proxy
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name yourdomain.com;
+
+    location / {
+        proxy_pass         http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+### PM2 Process Management
+
+```bash
+pm2 start npm --name "storebuilders-app" -- run start
+pm2 startup   # enable auto-start on reboot
+pm2 save
 ```
 
 ---
 
-## Routes
+## Contributing
 
-| URL | Page | Type |
-|-----|------|------|
-| `/` | Homepage | SSG Server Component |
-| `/about` | About Us | SSG Server Component |
-| `/pricing` | Pricing | SSG Server Component |
-| `/contact` | Contact | SSG Server Component |
-| `/blog` | Blog | SSG Server Component |
-| `/auth` | Login / Sign Up | SSG Server Component |
-| `/dashboard` | Stores Monitor | SSG Server Component |
-| `/dashboard/store-builder` | Store Builder Wizard | SSG Server Component |
-| `/dashboard/ebay` | eBay Coming Soon | SSG Server Component |
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for branch conventions, commit message standards, and the pull request process.
 
 ---
 
-## Architecture Decisions
+## License
 
-### Route Groups
-- `(marketing)` wraps public pages with Navbar + Footer. The group name does **not** appear in the URL.
-- Dashboard has its own layout with sidebar navigation — no Navbar/Footer.
-
-### Server vs Client Components
-- All **pages** are Server Components — metadata exports work, SSG applies.
-- Interactive UI (forms, active nav, search state) is isolated into small `'use client'` components inside `components/`.
-
-### Layout Hierarchy
-```
-RootLayout (server)
-├── (marketing)/layout (server) → Navbar (client) + Footer (server)
-│   └── page (server)
-├── auth/page (server) → AuthContent (client)
-└── dashboard/layout (server) → DashboardSidebar (client)
-    └── page (server)
-```
-
-### Styling
-- Tailwind CSS v4 via `@tailwindcss/postcss`
-- Brand colors: primary `#38C695` (teal), secondary `#1D3A63` (navy)
-- No custom `tailwind.config.js` — using v4 defaults
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-## Tech Stack
-
-| Tool | Version | Purpose |
-|------|---------|---------|
-| Next.js | 15 | App Router, SSG, metadata |
-| React | 19 | UI |
-| Tailwind CSS | 4 | Styling |
-| Lucide React | latest | Icons |
-| Radix UI | latest | Headless primitives |
-| clsx + tailwind-merge | latest | Class utilities |
+<div align="center">
+Built with precision by <a href="https://github.com/mohamedwalidelmorsy">Mohamed Walid El-Morsy</a>
+</div>

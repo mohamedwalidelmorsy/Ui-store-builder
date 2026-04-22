@@ -192,16 +192,10 @@ function EbayComingSoonPage() {
   };
 
   return (
-    <div className="-m-4 md:-m-8 bg-white overflow-x-hidden">
+    <div className="space-y-6">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden bg-gradient-to-br from-[#1D3A63] to-[#2a4d7a]">
-        {/* Background decoration */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#38C695] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#38C695] rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto text-center relative z-10">
+      <div className="w-full py-12 px-4 text-center rounded-xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #1D3A63 0%, #2a4d7a 100%)' }}>
+        <div className="max-w-4xl mx-auto">
           {/* Coming Soon Badge */}
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#38C695]/20 border border-[#38C695] animate-pulse">
             <Clock className="h-5 w-5 text-[#38C695]" />
@@ -209,19 +203,19 @@ function EbayComingSoonPage() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Coming Soon: eBay Dropshipping<br />
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            Coming Soon: eBay Dropshipping{' '}
             <span className="text-[#38C695]">Store Integration</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
             Expanding to the world's most established marketplace. Soon you'll be able to launch and automate your eBay dropshipping store with the same powerful AI technology.
           </p>
 
           {/* eBay Visual Icon */}
-          <div className="inline-flex items-center justify-center w-32 h-32 rounded-2xl bg-gradient-to-br from-[#38C695] to-[#2a4d7a] shadow-2xl mb-8">
-            <ShoppingCart className="h-16 w-16 text-white" />
+          <div className="inline-flex items-center justify-center w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br from-[#38C695] to-[#2a4d7a] shadow-2xl mb-8">
+            <ShoppingCart className="h-12 w-12 md:h-16 md:w-16 text-white" />
           </div>
 
           {/* Launch Timeline */}
@@ -230,187 +224,171 @@ function EbayComingSoonPage() {
             <span className="text-white font-medium">Expected Launch: Q2 2026</span>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Statistics Section */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The Power of <span className="text-[#38C695]">eBay Marketplace</span>
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Join millions of sellers reaching a massive global audience
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {stats.map((stat, index) => (
-              <StatCard key={index} stat={stat} index={index} />
-            ))}
-          </div>
+      <div className="bg-gray-50 rounded-xl p-6 md:p-10">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            The Power of <span className="text-[#38C695]">eBay Marketplace</span>
+          </h2>
+          <p className="text-gray-600">
+            Join millions of sellers reaching a massive global audience
+          </p>
         </div>
-      </section>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {stats.map((stat, index) => (
+            <StatCard key={index} stat={stat} index={index} />
+          ))}
+        </div>
+      </div>
 
       {/* Features Preview Section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What's <span className="text-[#38C695]">Coming</span>
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Powerful automation features to supercharge your eBay business
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} />
-            ))}
-          </div>
+      <div className="bg-white rounded-xl border border-gray-200 p-6 md:p-10">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            What's <span className="text-[#38C695]">Coming</span>
+          </h2>
+          <p className="text-gray-600">
+            Powerful automation features to supercharge your eBay business
+          </p>
         </div>
-      </section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((feature, index) => (
+            <FeatureCard key={index} feature={feature} index={index} />
+          ))}
+        </div>
+      </div>
 
       {/* Waitlist Signup Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Card className="bg-white border-gray-200">
-            <CardContent className="p-8 md:p-12">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  Join the <span className="text-[#38C695]">Waitlist</span>
-                </h2>
-                <p className="text-gray-600 text-lg">
-                  Be among the first to access our eBay automation platform
-                </p>
-              </div>
-
-              {/* Benefits Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                {benefits.map((benefit, index) => (
-                  <BenefitCard key={index} benefit={benefit} index={index} />
-                ))}
-              </div>
-
-              {/* Waitlist Form */}
-              {!isSubmitted ? (
-                <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-gray-700">
-                        Email Address *
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="your-email@example.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className={`bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 ${
-                          error ? 'border-red-500' : ''
-                        }`}
-                      />
-                      {error && (
-                        <p className="text-sm text-red-400">{error}</p>
-                      )}
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full bg-[#38C695] hover:bg-[#2da97c] text-white py-6 text-lg font-semibold"
-                    >
-                      <Mail className="h-5 w-5 mr-2" />
-                      Notify Me When Available
-                    </Button>
-
-                    <p className="text-xs text-gray-400 text-center">
-                      <Lock className="inline h-3 w-3 mr-1" />
-                      We respect your privacy. Unsubscribe at any time.
-                    </p>
-                  </div>
-                </form>
-              ) : (
-                <div className="max-w-md mx-auto text-center py-8">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#38C695] flex items-center justify-center">
-                    <CheckCircle2 className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    You're on the list!
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Thanks for joining the waitlist. We'll notify you as soon as eBay integration is available.
-                  </p>
-                  <Button
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setEmail('');
-                    }}
-                    variant="outline"
-                    className="border-[#38C695] text-[#38C695] hover:bg-[#38C695] hover:text-white"
-                  >
-                    Add Another Email
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Why eBay Section */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose <span className="text-[#38C695]">eBay</span>?
+      <Card className="bg-white border-gray-200">
+        <CardContent className="p-6 md:p-10">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              Join the <span className="text-[#38C695]">Waitlist</span>
             </h2>
-            <p className="text-gray-600 text-lg">
-              The world's most trusted online marketplace for your business
+            <p className="text-gray-600">
+              Be among the first to access our eBay automation platform
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {whyEbay.map((reason, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-4 p-6 rounded-lg bg-white border border-gray-200 hover:border-[#38C695]/50 transition-all duration-300"
-              >
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#38C695] flex items-center justify-center">
-                  <Check className="h-5 w-5 text-white" />
-                </div>
-                <p className="text-gray-700">{reason}</p>
-              </div>
+          {/* Benefits Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            {benefits.map((benefit, index) => (
+              <BenefitCard key={index} benefit={benefit} index={index} />
             ))}
           </div>
+
+          {/* Waitlist Form */}
+          {!isSubmitted ? (
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-gray-700">
+                    Email Address *
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your-email@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 ${
+                      error ? 'border-red-500' : ''
+                    }`}
+                  />
+                  {error && (
+                    <p className="text-sm text-red-400">{error}</p>
+                  )}
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-[#38C695] hover:bg-[#2da97c] text-white py-6 text-lg font-semibold"
+                >
+                  <Mail className="h-5 w-5 mr-2" />
+                  Notify Me When Available
+                </Button>
+
+                <p className="text-xs text-gray-400 text-center">
+                  <Lock className="inline h-3 w-3 mr-1" />
+                  We respect your privacy. Unsubscribe at any time.
+                </p>
+              </div>
+            </form>
+          ) : (
+            <div className="max-w-md mx-auto text-center py-8">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#38C695] flex items-center justify-center">
+                <CheckCircle2 className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                You're on the list!
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Thanks for joining the waitlist. We'll notify you as soon as eBay integration is available.
+              </p>
+              <Button
+                onClick={() => {
+                  setIsSubmitted(false);
+                  setEmail('');
+                }}
+                variant="outline"
+                className="border-[#38C695] text-[#38C695] hover:bg-[#38C695] hover:text-white"
+              >
+                Add Another Email
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Why eBay Section */}
+      <div className="bg-gray-50 rounded-xl p-6 md:p-10">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            Why Choose <span className="text-[#38C695]">eBay</span>?
+          </h2>
+          <p className="text-gray-600">
+            The world's most trusted online marketplace for your business
+          </p>
         </div>
-      </section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {whyEbay.map((reason, index) => (
+            <div
+              key={index}
+              className="flex items-start gap-4 p-5 rounded-lg bg-white border border-gray-200 hover:border-[#38C695]/50 transition-all duration-300"
+            >
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#38C695] flex items-center justify-center">
+                <Check className="h-5 w-5 text-white" />
+              </div>
+              <p className="text-gray-700">{reason}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Footer Trust Signals */}
-      <section className="py-12 px-4 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
-            <div className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-[#38C695]" />
-              <span>Secure & Encrypted</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Lock className="h-5 w-5 text-[#38C695]" />
-              <span>Privacy Protected</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-[#38C695]" />
-              <span>Trusted by Thousands</span>
-            </div>
+      <div className="border-t border-gray-100 pt-6 pb-2">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+          <div className="flex items-center gap-2">
+            <Shield className="h-5 w-5 text-[#38C695]" />
+            <span>Secure & Encrypted</span>
           </div>
-
-          <div className="text-center mt-8">
-            <p className="text-gray-500 text-sm">
-              (c) 2026 Storebuilders.io - All rights reserved
-            </p>
+          <div className="flex items-center gap-2">
+            <Lock className="h-5 w-5 text-[#38C695]" />
+            <span>Privacy Protected</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="h-5 w-5 text-[#38C695]" />
+            <span>Trusted by Thousands</span>
           </div>
         </div>
-      </section>
+        <div className="text-center mt-4">
+          <p className="text-gray-500 text-sm">
+            (c) 2026 Storebuilders.io - All rights reserved
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
